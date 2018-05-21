@@ -1,0 +1,483 @@
+html,body
+{
+  position:relative;
+  
+  height:100%;
+  margin: 0 0;
+
+  /*force app to hide elements outside the screen*/
+  overflow:hidden;
+}
+div
+{
+  /*divs have not automatic margin*/
+  margin: 0 0;
+    /*set default font*/
+    font-family: CleanfontRegular;
+    /*background-image will adapt to the div side*/
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+a, a:hover, a:active {color:#333; text-decoration: none}
+#main
+{
+  width:100%;
+  height:100%;
+  background: #eee;
+}
+.top-bar
+{
+  height:10vh;
+  padding-left: 3.3vw;
+  padding-right: 3.3vw;
+
+  background: white;
+  border-bottom: 1px solid #ccc;
+
+  position:relative;
+  top:0vh;
+  overflow:hidden;
+}
+.top-bar #title
+{
+  margin-top:3vh;
+  transform:translateY(-50%);
+  font-size:4.5vh;
+  padding-right:10vh;
+}
+.top-bar #subtitle
+{
+  margin-top:-1vh;
+  transform:translateY(-50%);
+  font-size:3vh;
+  padding-right:10vh;
+}
+.top-bar #tokens-open
+{
+  position:absolute;
+  right:3.3vw;
+  top:0;
+  height:10vh;
+  width:10vh;
+  background: url("images/tokens.png");
+}
+.top-bar #subtitle::after
+{
+  background:url("images/logo.jpeg");
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  display:inline-block;
+  height:3.5vh; 
+  width:3.5vh; 
+  content:" "; 
+  white-space: pre;
+}
+
+@font-face
+{
+  font-family: CleanfontRegular;
+  src: url("fonts/CleanfontRegular.ttf");
+}
+@font-face
+{
+  font-family: CleanfontBold;
+  src: url("fonts/CleanfontBold.ttf");
+}
+@font-face
+{
+  font-family: CleanfontLight;
+  src: url("fonts/CleanfontLight.ttf");
+}
+.settings
+{
+  /*div esteso a tutto lo schermo*/
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+.settings-window
+{
+  /*colore di testo, sfondo e bordi rotondi*/
+  background:rgba(10,10,10,0.7);
+  border-radius:20px;
+  color:white;
+  /*dimensioni e posizionamento*/
+  height:65vh;
+  width: 73.4vw;
+  margin-left:3.3vw;
+  margin-right:3.3vw;
+  padding:0 10vw;
+  position:absolute;
+  top:8vh;
+  overflow:hidden;
+}
+#tokens-close
+{
+  /* icona del div di chiusura schermata */
+  background:url("images/main.png");
+  /*dimensioni*/
+  height:5.3vh;
+  width:10vh;
+  /*posizionamento centrato in basso*/
+  position:absolute;
+  bottom:4.8vh;
+  left:50%;
+  transform: translateX(-50%);
+}
+.settings-window .name
+{
+  padding-top: 2.7vh;
+  text-align:center;
+  font-size: 4vh;
+}
+#main.visible
+{
+  filter:blur(0px) opacity(100%);
+}
+#main.hide
+{
+  filter:blur(14px) opacity(95%);
+}
+.settings
+{
+  top:100%;
+}
+.settings.visible
+{
+  transform:translateY(-100%);
+}
+.settings.hide
+{
+  transform:translateY(0%);
+}
+.settings
+{
+  transition: all 0.7s ease-in-out;
+}
+#main
+{
+  transition: all 0.6s ease-in-out;
+}
+.scroll {
+  position:absolute;
+  /* con "auto" e "touch" verrà utilizzata la modalità scorrimento nel caso gli elementi escano dal bordo in basso*/
+  overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
+  /* eventuali elementi fuori dal bordo a destra saranno nascosti */
+  overflow-x:hidden;
+}
+.settings-window .scroll { 
+  /* imposto i margini del contenitore */
+  top:8vh;
+  bottom:14vh;
+  width:inherit;
+}
+/*define position and size of text in settings windows*/
+.setting-box
+{
+  position:relative;
+  margin-top:5.5vh;
+  height:8vh;
+}
+.setting-box .setting-label
+{
+  font-size: 1.8vh;
+  text-transform:uppercase; 
+  position:absolute !important;
+  left:10vh;
+  top:0.7vh;
+  white-space: nowrap;
+}
+.setting-box .content
+{
+  font-size: 4.5vh;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  width:60vw;
+  position:absolute;
+  left:10vh;
+  top:2.35vh;
+}
+.accesstoken.setting-box {margin-top:3.5vh}
+.accesstoken.new.setting-box {position:absolute; bottom:4vh}
+.accesstoken.edit .setting-label, .accesstoken.edit .content
+{
+  left:0vh !important;
+}
+.circle
+{
+  border-radius: 50%;
+  height:8vh;
+  width:8vh;
+}
+.accesstoken .circle
+{
+  /*arrotondando il bordo al 50% otteniamo una forma circolare*/
+  border-radius:50%;
+
+  margin:1vh 1vh;
+  height:6vh;
+  width:6vh;
+}
+/*il div del controllo per rimuovere un token avra id "removetoken"*/
+#removetoken
+{
+    background: url("images/removetoken.png");
+}
+/*il div del controllo per iniziare le modifiche avra id "edittokens" e classe "edit"*/
+#edittokens.edit
+{
+    background: url("images/edit.png");
+}
+/*il div del controllo per aggiungere un token e confermare avra id "edittokens" e classe "confirm"*/
+#edittokens.confirm
+{
+    background: url("images/confirm.png");
+}
+/*set textbox styling (dimension, colors and text)*/
+input
+{
+  font-size:3.5vh !important;
+  color: white;
+
+  padding:0.1vh !important;
+  width:50vw !important;
+  top:3vh !important;
+
+  background: rgba(50,50,50,0.2);
+  border: 2px solid #555;
+  border-radius:5px;
+}
+/*remove textbox effect when focused*/
+input:focus
+{
+  outline: none;
+  border: 2px solid #444;
+}
+.thermo-frame
+{
+  position:relative;
+  margin: 3.3vw 3.3vw;
+  height: 28vh;
+
+  background: white;
+  border: solid 1px #ccc;
+  border-radius: 12px;
+}
+.thermo-frame.true
+{
+  border-color:#82c3e8ee;
+}
+.thermo-frame .data
+{
+  position:absolute;
+  top:8vh;
+  width:21vh;
+  overflow:show;
+}
+.data.state
+{
+  left:3.5vw;
+}
+.data.temp
+{
+  left:47.5vw;
+}
+/*fill .data divs (.temp and .state) and helps positioning the content*/
+.data-container
+{
+  height:100%;
+  width:100%;
+  position:relative;
+}
+
+.icon
+{
+  height:12vh;
+  width:12vh;
+  position:absolute;
+  left:0vh;
+}
+.label
+{
+  font-size:3.2vh;
+  position:absolute;
+  left:12vh;
+  top:5.9vh;
+  transform: translateY(-50%);
+}
+.thermo-frame .name
+{
+  font-family:CleanfontBold;
+  font-size: 3.3vh;
+  padding-top: 1.8vw;
+  padding-left: 3.8vw;
+}
+.thermo-frame .connected
+{
+  position:absolute;
+  top:0;
+  right:0;
+  margin-top: 1.8vw;
+  margin-right: 3.8vw;
+  width:4.3vh;
+  height:4.3vh;
+}
+/*choose the state icon depending on the class set by js*/
+.state .data-container .icon.off
+{
+  background:url("images/state-off.png");
+}
+.state .data-container .icon.forcedoff
+{
+  background:url("images/state-forcedoff.png");
+}
+.state .data-container .icon.on
+{
+  background:url("images/state-on.png");
+}
+/*temperature icon*/
+.temp .data-container .icon
+{
+  background:url("images/temp-middle.png");
+}
+/*set a bigger font-size to the temperature label*/
+.temp .data-container .label
+{
+  font-size:4.5vh;
+  top:7.5vh;
+}
+.connected.true
+{
+  background:url("images/connected.true.png");
+}
+.connected
+{
+  background:url("images/connected.false.png");
+}
+#main .scroll
+{ 
+  top:10.3vh;
+  bottom:11.5vh; 
+  width:100vw;
+}
+.center.setting-label
+{
+  font-size:2.1vh;
+  text-align: center;
+  position:absolute;
+  left:50%;
+  transform: translateX(-50%);
+}
+#main .center.setting-label
+{
+  bottom:8vh;
+}
+.center.circle
+{
+  position:absolute;
+  height:7vh;
+  width:7vh;
+  left:50%;
+  margin-left:-3.5vh;
+}
+#main .center.circle
+{
+  bottom:0.9vh;
+}
+.settings .center.circle
+{
+bottom:2.2vh;
+}
+#refresh
+{
+    background: url("images/pending.png");
+}
+/*definizione dell'animazione "spin"*/
+@keyframes spin { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/*assegnazione dell'animazione ai div di classe pending e id refresh*/
+#refresh.pending
+{
+  animation: 1s linear 0s infinite spin; 
+}
+#user-close, #settings-close
+{
+  background:url("images/main.png");
+  height:5.3vh;
+  width:10vh;
+  position:absolute;
+  bottom:4.8vh;
+  left:50%;
+  transform: translateX(-50%);
+}
+#settings-open
+{
+  height:5.3vh;
+  width:10vh;
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform: translateX(-50%);
+  background:url("images/window.false.png");
+}
+#settings-open.true
+{
+  background:url("images/window.png");
+}
+#editname.edit, #edittokens.edit
+{
+  background: url("images/edit.png");
+}
+#editname.confirm, #edittokens.confirm
+{
+  background: url("images/confirm.png");  
+}
+#changestate.on
+{
+  background: url("images/power-on.png");
+}
+#changestate.off
+{
+  background: url("images/power-off.png");
+}
+.smallcircle
+{
+  border-radius: 50%;
+  height:6vh;
+  width:6vh;
+
+  position:absolute !important;
+  left: 1vh;
+}
+.settings .center.setting-label
+{
+  bottom:9.4vh;
+}
+#update.updated
+{
+  background: rgba(200,200,200,0.1) url("images/updated.png");
+}
+#update.pending
+{
+  background: rgba(200,200,200,0.1) url("images/pending.png");
+  /*nel caso di aggiornamento in corso
+  l'icona ruoterà su stessa secondo l'animazione "spin" vista in precedenza*/
+  animation: 1s linear 0s infinite spin; 
+}
+#update.error, #update.invalid
+{
+  background: rgba(200,200,200,0.1) url("images/error.png");
+}
+#up
+{
+  background: url("images/plus.png");
+  top:-2.2vh;
+}
+#down
+{
+  background: url("images/minus.png");
+  bottom:-2.2vh;
+}

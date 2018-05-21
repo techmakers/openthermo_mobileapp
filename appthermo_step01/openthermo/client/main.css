@@ -1,0 +1,90 @@
+html,body
+{
+  position:relative;
+  
+  height:100%;
+  margin: 0 0;
+
+  /*force app to hide elements outside the screen*/
+  overflow:hidden;
+}
+div
+{
+  /*divs have not automatic margin*/
+  margin: 0 0;
+    /*set default font*/
+    font-family: CleanfontRegular;
+    /*background-image will adapt to the div side*/
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+a, a:hover, a:active {color:#333; text-decoration: none}
+#main
+{
+  width:100%;
+  height:100%;
+  background: #eee;
+}
+.top-bar
+{
+  height:10vh;
+  padding-left: 3.3vw;
+  padding-right: 3.3vw;
+
+  background: white;
+  border-bottom: 1px solid #ccc;
+
+  position:relative;
+  top:0vh;
+  overflow:hidden;
+}
+.top-bar #title
+{
+  margin-top:3vh;
+  transform:translateY(-50%);
+  font-size:4.5vh;
+  padding-right:10vh;
+}
+.top-bar #subtitle
+{
+  margin-top:-1vh;
+  transform:translateY(-50%);
+  font-size:3vh;
+  padding-right:10vh;
+}
+.top-bar #tokens-open
+{
+  position:absolute;
+  right:3.3vw;
+  top:0;
+  height:10vh;
+  width:10vh;
+  background: url("images/tokens.png");
+}
+.top-bar #subtitle::after
+{
+  background:url("images/logo.jpeg");
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  display:inline-block;
+  height:3.5vh; 
+  width:3.5vh; 
+  content:" "; 
+  white-space: pre;
+}
+
+@font-face
+{
+  font-family: CleanfontRegular;
+  src: url("fonts/CleanfontRegular.ttf");
+}
+@font-face
+{
+  font-family: CleanfontBold;
+  src: url("fonts/CleanfontBold.ttf");
+}
+@font-face
+{
+  font-family: CleanfontLight;
+  src: url("fonts/CleanfontLight.ttf");
+}

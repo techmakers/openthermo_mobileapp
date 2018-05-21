@@ -1,0 +1,39 @@
+<!-- Information about the web page -->
+<head>
+    <!-- Setting the title of the app displayed by browsers -->
+    <title>Openthermo Monitor</title>
+    <!-- Special tag for old iphones - Increase web app screen size -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Fix the app viewport to the full width and height of the phone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<!-- Content displayed -->
+<body>
+    <!-- Import Meteor template called "monitor" -->
+    {{> monitor}}
+</body>
+  
+<!-- Define "monitor" template used in body -->
+<template name="monitor">
+    <!-- Main screen -->
+    <div id="main" class="{{main_visible}}">
+        <!-- Adding a bar on top of the screen -->
+        <div class="top-bar">
+
+            <!-- Main title - left of the bar -->
+            <div id="title">
+              Openthermo
+            </div>
+
+            <div id="subtitle">
+            - by <a class="link" href="http://techmakers.io">Techmakers.io</a>
+            </div>
+
+            <!-- Button to show user settings window - right of the bar -->
+            <div id="tokens-open">
+            </div>
+            
+        </div>
+    </div>
+</template>
